@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('news/create', 'Admin\NewsController@add');
+    Route::get('profile/create', 'Admin\ProfileController@add');   //PHP/Laravel 09 Routingについて理解する 課題4
+    Route::get('profile/edit', 'Admin\ProfileController@edit');    //PHP/Laravel 09 Routingについて理解する 課題4
+});
+
+Route::get('XXX', 'XXX\AAAController@bbb');                        //PHP/Laravel 09 Routingについて理解する 課題3
+
+
