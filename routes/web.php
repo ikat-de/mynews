@@ -25,6 +25,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('profile/edit', 'Admin\ProfileController@edit');    //PHP/Laravel 09 Routingについて理解する 課題4
 });
 
-Route::get('XXX', 'XXX\AAAController@bbb');                        //PHP/Laravel 09 Routingについて理解する 課題3
+Route::get('/XXX', 'AAAController@bbb');                        //PHP/Laravel 09 Routingについて理解する 課題3
 
 
