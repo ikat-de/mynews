@@ -20,11 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('news/create', 'Admin\NewsController@add');
-    Route::get('profile/create', 'Admin\ProfileController@add');   //PHP/Laravel 09 Routingについて理解する 課題4
-    Route::get('profile/edit', 'Admin\ProfileController@edit');    //PHP/Laravel 09 Routingについて理解する 課題4
+    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+    Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');   //PHP/Laravel 12 ユーザー認証を実装する 課題2
+    Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');    //PHP/Laravel 12 ユーザー認証を実装する 課題3
 });
 
-// Route::get('/XXX', 'AAAController@bbb');                        //PHP/Laravel 09 Routingについて理解する 課題3
+// Auth::routes();
 
-
+// Route::get('/home', 'HomeController@index')->name('home');
