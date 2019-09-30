@@ -21,10 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+    Route::post('news/create', 'Admin\NewsController@create');                         // 追記    
     Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');   //PHP/Laravel 12 ユーザー認証を実装する 課題2
+    Route::post('profile/create', 'Admin\ProfileController@create');                   //PHP/Laravel 13 ニュース投稿画面を作成しよう 課題3
     Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');    //PHP/Laravel 12 ユーザー認証を実装する 課題3
+    Route::post('profile/edit', 'Admin\ProfileController@update');                     //PHP/Laravel 13 ニュース投稿画面を作成しよう 課題6
 });
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
