@@ -16,6 +16,13 @@ class ProfileController extends Controller
     return view('admin.profile.create');
   }
   
+  public function index(Request $request)
+  {
+      $profile = Profile::find($request->user_id);
+      return view('admin.profile.index', ['profile' => $profile]);
+  }  
+  
+  
   public function create(Request $request)
   {
       // Varidationを行う
@@ -29,16 +36,32 @@ class ProfileController extends Controller
       $profile->fill($form);
       $profile->save();
     
-      return redirect('admin/profile/create');
+      return view('admin.profile.index', ['profile' => $profile]);
   }
   
-  public function edit()
+  public function edit(Request $request)
   {
-    return view('admin.profile.edit');
+      // Profile Modelからデータを取得する
+      $profile = Profile::find($request->user_id);
+      if (empty($profile)) {
+        abort(404);
+      }
+      return view('admin.profile.edit', ['profile_form' => $profile]);
   }
   
-  public function update()
+  public function update(Request $request)
   {
-    return redirect('admin/profile/edit');
+      // Varidationを行う
+      $this->validate($request, Profile::$rules);
+
+      $profile = Profile::find($request->id);
+      $profile_form = $request->all();
+      $profile->user_id = $request->user()->id;
+
+      // データベースに保存する
+      $profile->fill($profile_form);
+      $profile->save();
+    
+      return view('admin.profile.index', ['profile' => $profile]);
   }
 }
