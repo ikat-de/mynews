@@ -19,4 +19,10 @@ class Profile extends Model
     {
         return $this->belongsTo('App\User');
     }
+    
+    public function profile_histories()
+    {
+      return $this->hasMany('App\Profile_history');
+
+    }    
 }
