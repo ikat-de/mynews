@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'], function() {
@@ -32,4 +33,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');                         //PHP/Laravel 12 ユーザー認証を実装する 課題3
     Route::post('profile/edit', 'Admin\ProfileController@update')->middleware('auth');                      //PHP/Laravel 13 ニュース投稿画面を作成しよう 課題6
     Route::get('profile', 'Admin\ProfileController@index')->middleware('auth');                      //PHP/Laravel 13 ニュース投稿画面を作成しよう 課題6
+    
 });
+
+
+Route::get('/', 'NewsController@index');
+Route::get('/profile', 'ProfileController@index');
